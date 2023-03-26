@@ -1,0 +1,192 @@
+run_scalex_engine called: Sun Mar 26 10:35:00 +04 2023
+Decalring a new pacake object...
+DATA: {'price': {'value': '18', 'unit': 'RO'}, 'data_allowance': {'value': '30', 'unit': 'GB'}, 'flexi_minutes': '600', 'local_minutes': 0, 'international_minutes': 0, 'social_media_data': {'value': '', 'unit': ''}, 'duration': {'value': '4', 'unit': 'Weeks'}, 'link': 'https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus', 'isp': 'omantel'}
+Object Decalared.
+Decalring a new pacake object...
+DATA: {'price': {'value': '15', 'unit': 'OMR'}, 'data_allowance': {'value': '9', 'unit': 'GB'}, 'flexi_minutes': '300', 'local_minutes': 0, 'international_minutes': 0, 'social_media_data': {'value': '4', 'unit': 'GB'}, 'duration': {'value': '12', 'unit': 'Weeks'}, 'link': 'https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus', 'isp': 'omantel'}
+Object Decalared.
+Decalring a new pacake object...
+DATA: {'price': {'value': '9', 'unit': 'RO'}, 'data_allowance': {'value': '8', 'unit': 'GB'}, 'flexi_minutes': '250', 'local_minutes': 0, 'international_minutes': 0, 'social_media_data': {'value': '2', 'unit': 'GB'}, 'duration': {'value': '4', 'unit': 'Weeks'}, 'link': 'https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus', 'isp': 'omantel'}
+Object Decalared.
+Decalring a new pacake object...
+DATA: {'price': {'value': '7', 'unit': 'OR'}, 'data_allowance': {'value': '', 'unit': '-'}, 'flexi_minutes': None, 'local_minutes': 0, 'international_minutes': 0, 'social_media_data': {'value': '', 'unit': ''}, 'duration': {'value': '4', 'unit': 'Weeks'}, 'link': 'https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus', 'isp': 'omantel'}
+Object Decalared.
+Decalring a new pacake object...
+DATA: {'price': {'value': '6', 'unit': 'OMR'}, 'data_allowance': {'value': '3', 'unit': 'GB'}, 'flexi_minutes': '100', 'local_minutes': 0, 'international_minutes': 0, 'social_media_data': {'value': '1.5', 'unit': 'GB'}, 'duration': {'value': '4', 'unit': 'Weeks'}, 'link': 'https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus', 'isp': 'omantel'}
+Object Decalared.
+Decalring a new pacake object...
+DATA: {'price': {'value': '5', 'unit': 'RO'}, 'data_allowance': {'value': '7', 'unit': 'GB'}, 'flexi_minutes': '50', 'local_minutes': 0, 'international_minutes': 0, 'social_media_data': {'value': '1', 'unit': 'GB'}, 'duration': {'value': '', 'unit': 'weekly'}, 'link': 'https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus', 'isp': 'omantel'}
+Object Decalared.
+Decalring a new pacake object...
+DATA: {'price': {'value': '4', 'unit': 'OMR'}, 'data_allowance': {'value': '2', 'unit': 'GB'}, 'flexi_minutes': '50', 'local_minutes': 0, 'international_minutes': 0, 'social_media_data': {'value': '500', 'unit': 'MB'}, 'duration': {'value': '4', 'unit': 'Weeks'}, 'link': 'https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus', 'isp': 'omantel'}
+Object Decalared.
+Decalring a new pacake object...
+DATA: {'price': {'value': '2', 'unit': 'RO'}, 'data_allowance': {'value': '1', 'unit': 'GB'}, 'flexi_minutes': '35', 'local_minutes': 0, 'international_minutes': 0, 'social_media_data': {'value': '500', 'unit': 'MB'}, 'duration': {'value': '', 'unit': 'weekly'}, 'link': 'https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus', 'isp': 'omantel'}
+Object Decalared.
+
+        SELECT * FROM plan WHERE price_value=18 AND
+        price_unit='RO' AND
+        data_allowance_value=30 AND
+        data_allowance_unit= 'GB' AND
+        flexi_minutes=600 AND
+        local_minuets=0 AND
+        international_minuets=0 AND
+        duration_value=4 AND
+        duration_unit='Weeks' AND
+        isp='omantel' AND
+        link='https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus' AND
+        social_media_data_value=0 AND
+        social_media_data_unit='' ;
+                        
+{'exsits': True, 'id': 113}
+UPDATE QUERY: UPDATE plan SET last_checked='2023-03-26 10:35:01' WHERE id=113
+0
+<domain.package.Package object at 0x10181a2e0>
+------------------------------
+
+        SELECT * FROM plan WHERE price_value=15 AND
+        price_unit='OMR' AND
+        data_allowance_value=9 AND
+        data_allowance_unit= 'GB' AND
+        flexi_minutes=300 AND
+        local_minuets=0 AND
+        international_minuets=0 AND
+        duration_value=12 AND
+        duration_unit='Weeks' AND
+        isp='omantel' AND
+        link='https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus' AND
+        social_media_data_value=0 AND
+        social_media_data_unit='GB' ;
+                        
+{'exsits': True, 'id': 114}
+UPDATE QUERY: UPDATE plan SET last_checked='2023-03-26 10:35:01' WHERE id=114
+1
+<domain.package.Package object at 0x1024d6f70>
+------------------------------
+
+        SELECT * FROM plan WHERE price_value=9 AND
+        price_unit='RO' AND
+        data_allowance_value=8 AND
+        data_allowance_unit= 'GB' AND
+        flexi_minutes=250 AND
+        local_minuets=0 AND
+        international_minuets=0 AND
+        duration_value=4 AND
+        duration_unit='Weeks' AND
+        isp='omantel' AND
+        link='https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus' AND
+        social_media_data_value=0 AND
+        social_media_data_unit='GB' ;
+                        
+{'exsits': True, 'id': 115}
+UPDATE QUERY: UPDATE plan SET last_checked='2023-03-26 10:35:01' WHERE id=115
+2
+<domain.package.Package object at 0x102e59370>
+------------------------------
+
+        SELECT * FROM plan WHERE price_value=7 AND
+        price_unit='OR' AND
+        data_allowance_value= AND
+        data_allowance_unit= '-' AND
+        flexi_minutes=None AND
+        local_minuets=0 AND
+        international_minuets=0 AND
+        duration_value=4 AND
+        duration_unit='Weeks' AND
+        isp='omantel' AND
+        link='https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus' AND
+        social_media_data_value=0 AND
+        social_media_data_unit='' ;
+                        
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND
+        data_allowance_unit= '-' AND
+        flexi_minutes=None AND
+        ' at line 3
+3
+<domain.package.Package object at 0x102e593d0>
+------------------------------
+
+        SELECT * FROM plan WHERE price_value=6 AND
+        price_unit='OMR' AND
+        data_allowance_value=3 AND
+        data_allowance_unit= 'GB' AND
+        flexi_minutes=100 AND
+        local_minuets=0 AND
+        international_minuets=0 AND
+        duration_value=4 AND
+        duration_unit='Weeks' AND
+        isp='omantel' AND
+        link='https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus' AND
+        social_media_data_value=0 AND
+        social_media_data_unit='GB' ;
+                        
+{'exsits': True, 'id': 116}
+UPDATE QUERY: UPDATE plan SET last_checked='2023-03-26 10:35:01' WHERE id=116
+4
+<domain.package.Package object at 0x102e59400>
+------------------------------
+
+        SELECT * FROM plan WHERE price_value=5 AND
+        price_unit='RO' AND
+        data_allowance_value=7 AND
+        data_allowance_unit= 'GB' AND
+        flexi_minutes=50 AND
+        local_minuets=0 AND
+        international_minuets=0 AND
+        duration_value= AND
+        duration_unit='weekly' AND
+        isp='omantel' AND
+        link='https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus' AND
+        social_media_data_value=0 AND
+        social_media_data_unit='GB' ;
+                        
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND
+        duration_unit='weekly' AND
+        isp='omantel' AND
+        link='h' at line 8
+5
+<domain.package.Package object at 0x102e594f0>
+------------------------------
+
+        SELECT * FROM plan WHERE price_value=4 AND
+        price_unit='OMR' AND
+        data_allowance_value=2 AND
+        data_allowance_unit= 'GB' AND
+        flexi_minutes=50 AND
+        local_minuets=0 AND
+        international_minuets=0 AND
+        duration_value=4 AND
+        duration_unit='Weeks' AND
+        isp='omantel' AND
+        link='https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus' AND
+        social_media_data_value=0 AND
+        social_media_data_unit='MB' ;
+                        
+{'exsits': True, 'id': 117}
+UPDATE QUERY: UPDATE plan SET last_checked='2023-03-26 10:35:01' WHERE id=117
+6
+<domain.package.Package object at 0x102e59520>
+------------------------------
+
+        SELECT * FROM plan WHERE price_value=2 AND
+        price_unit='RO' AND
+        data_allowance_value=1 AND
+        data_allowance_unit= 'GB' AND
+        flexi_minutes=35 AND
+        local_minuets=0 AND
+        international_minuets=0 AND
+        duration_value= AND
+        duration_unit='weekly' AND
+        isp='omantel' AND
+        link='https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus' AND
+        social_media_data_value=0 AND
+        social_media_data_unit='MB' ;
+                        
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND
+        duration_unit='weekly' AND
+        isp='omantel' AND
+        link='h' at line 8
+7
+<domain.package.Package object at 0x102e59550>
+------------------------------
+complete
