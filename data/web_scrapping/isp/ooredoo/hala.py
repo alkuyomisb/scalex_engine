@@ -84,7 +84,7 @@ class OoredooHala:
             except:
                 pass
 
-        # print(self.hala_SIM_blocks)
+        #print(self.hala_SIM_blocks)
 
     def get_hala_add_ons(self):
         hala_add_ons_internat_block = []
