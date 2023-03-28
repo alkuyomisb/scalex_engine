@@ -1,10 +1,10 @@
-from data.web_scrapping.isp.vodafone.mobilePlans import VodafonePlans
+from data.web_scrapping.isp.ooredoo.omanuna import OoredooOmanuna
 
 
 
 
-odafonePlans = VodafonePlans()
+ooredooOmanuna = OoredooOmanuna()
 
 
-for test in odafonePlans.mobile_add_ons:
+for test in OoredooOmanuna:
     print(test)
