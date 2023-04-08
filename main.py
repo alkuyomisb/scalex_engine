@@ -1,13 +1,90 @@
-from data.web_scrapping.isp.omantel.heyyak_plus import OmantelHeyyakPlus
+
+from domain.scalex_toolkit import ScaleXToolkit, send_not_found_plan_email
 import mysql.connector
-import os
-import datetime
-from domain.package import Package
+
+from data.web_scrapping.isp.awaser.fiber_home import FiberHome
+from data.web_scrapping.isp.omantel.fixed_broadband.afaaq import OmantelAfaaq
+from data.web_scrapping.isp.omantel.fixed_broadband.basic import OmantelBasic
+from data.web_scrapping.isp.omantel.fixed_broadband.ultra_fast import OmantelUltraFast
+from data.web_scrapping.isp.omantel.fixed_broadband.wireless import OmantelWireless
+from data.web_scrapping.isp.omantel.mobile.aman_plan import OmantelAmanPlan
+from data.web_scrapping.isp.omantel.mobile.aman_postpaid import OmantelAmanPostpaid
+from data.web_scrapping.isp.omantel.mobile.baqati_alufuq import OmantelBaqatiAlufuq
+from data.web_scrapping.isp.omantel.mobile.new_baqati import OmantelNewBaqati
+from data.web_scrapping.isp.omantel.mobile.erada_baqati import OmantelEradaBaqati
+from data.web_scrapping.isp.omantel.mobile.hayyak_data_only_plan import OmantelHeyyakDataOnly
+from data.web_scrapping.isp.omantel.mobile.heyyak_plus import OmantelHeyyakPlus
+from data.web_scrapping.isp.omantel.mobile.jawazk_gcc import OmantelJawazkGCC
+from data.web_scrapping.isp.omantel.mobile.jawazk_world import OmantelJawazkWorld
+from data.web_scrapping.isp.omantel.mobile.tourist_packs import OmantelTouristPacks
+from data.web_scrapping.isp.vodafone.mobile.plans import VodafonePlans
+from data.web_scrapping.isp.friendly.friendly_mobile import FriendlyMobile
+from data.web_scrapping.isp.renna.renna_mobile import RennaMobile
+from data.web_scrapping.isp.redbull.redbull_mobile_plans import RedbullMobilePlans
+from data.web_scrapping.isp.ooredoo.mobile.tourist_plans import OoredooTouristPlans
+from data.web_scrapping.isp.ooredoo.mobile.shahry_endless import OoredooShahryEndless
+from data.web_scrapping.isp.ooredoo.mobile.shahry_data_only import OoredooShahryDataOnly
+from data.web_scrapping.isp.ooredoo.mobile.omanuna import OoredooOmanuna
+from data.web_scrapping.isp.ooredoo.mobile.hala_sim import OoredooHalaSIM
+from data.web_scrapping.isp.ooredoo.mobile.hala_plans import OoredooHalaPlans
+from data.web_scrapping.isp.ooredoo.fixed_broadband.satellite_home_internet import OoredooSatelliteHomeInternet
+from data.web_scrapping.isp.ooredoo.fixed_broadband.four_g_home_internet import Ooredoo4GHomeInternet
+from data.web_scrapping.isp.ooredoo.fixed_broadband.five_g_home_internet import Ooredoo5GHomeInternet
+from data.web_scrapping.isp.ooredoo.fixed_broadband.fiber_home_internet import OoredooFiberHomeInternet
+import warnings
+import time
+import warnings
+warnings.filterwarnings("ignore")
+
+plans_classes = [
+    OmantelHeyyakPlus,
+    FiberHome,
+    OmantelJawazkGCC,
+    OoredooSatelliteHomeInternet,
+    OmantelAfaaq,
+    RennaMobile,
+    OmantelHeyyakDataOnly,
+    RedbullMobilePlans,
+    OmantelJawazkWorld,
+    Ooredoo4GHomeInternet,
+    OmantelBasic,
+    Ooredoo5GHomeInternet,
+    OmantelUltraFast,
+    OoredooFiberHomeInternet,
+    OmantelWireless,
+    OoredooHalaPlans,
+    OmantelAmanPlan,
+    OoredooTouristPlans,
+    OmantelAmanPostpaid,
+    OoredooShahryEndless,
+    OmantelBaqatiAlufuq,
+    OoredooShahryDataOnly,
+    OmantelNewBaqati,
+    OoredooOmanuna,
+    OmantelEradaBaqati,
+    OoredooHalaSIM,
+    OmantelTouristPacks,
+    FriendlyMobile,
+    VodafonePlans
+]
 
 
-def add_package(price_value, price_unit, data_allowance_value, data_allowance_unit,
-                flexi_minutes, local_minuets, international_minuets, duration_value,
-                duration_unit, isp, link, social_media_data_value, social_media_data_unit, last_checked):
+def start_scalex_engine(*plans_classes):
+    for page_index, PlanClass in enumerate(plans_classes):
+        obj = PlanClass()
+        for plan_index, package in enumerate(obj.packages):
+            print("Page [{}:{}] -> Plan [{}:{}]".format(page_index+1,
+                  len(plans_classes), plan_index+1, len(obj.packages)))
+            package.handle_db()
+        time.sleep(1)
+
+
+# obj = RennaMobile()
+# for plan in obj.packages:
+#     print(plan.data_allowance)
+
+
+def get_old_records(minutes: int):
     db = mysql.connector.connect(
         host="localhost",
         user="root",
@@ -15,165 +92,25 @@ def add_package(price_value, price_unit, data_allowance_value, data_allowance_un
         database="scalex"
     )
     query = """
-    INSERT INTO plan
+        SELECT id, title
+        FROM `plan`
+        WHERE last_checked < now() - interval {} minute;
+            """.format(minutes)
 
-    (price_value, price_unit, data_allowance_value, data_allowance_unit,
-    flexi_minutes, local_minuets, international_minuets, duration_value,
-    duration_unit, isp, link, social_media_data_value,social_media_data_unit, last_checked )
-    VALUES ({},'{}',{},'{}',{},{},{},{},'{}','{}','{}' , {} , '{}' , '{}');
-                    """.format(
-        price_value, price_unit, data_allowance_value, data_allowance_unit,
-        flexi_minutes, local_minuets, international_minuets, duration_value,
-        duration_unit, isp, link, social_media_data_value, social_media_data_unit, last_checked
-    )
-    print(query)
-    cursor = db.cursor()
-    cursor.execute(query)
-    db.commit()
-    db.close()
-
-
-def is_package_in_db(price_value, price_unit, data_allowance_value, data_allowance_unit,
-                     flexi_minutes, local_minuets, international_minuets, duration_value,
-                     duration_unit, isp, link, social_media_data_value, social_media_data_unit) -> dict:
-    db = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="sxbsadmin",
-        database="scalex"
-    )
-    query = """
-    SELECT * FROM plan WHERE price_value={} AND
-    price_unit='{}' AND
-    data_allowance_value={} AND
-    data_allowance_unit= '{}' AND
-    flexi_minutes={} AND
-    local_minuets={} AND
-    international_minuets={} AND
-    duration_value={} AND
-    duration_unit='{}' AND
-    isp='{}' AND
-    link='{}' AND
-    social_media_data_value={} AND
-    social_media_data_unit='{}' ;
-                    """.format(
-        price_value, price_unit, data_allowance_value, data_allowance_unit,
-        flexi_minutes, local_minuets, international_minuets, duration_value,
-        duration_unit, isp, link, social_media_data_value, social_media_data_unit
-    )
-    print(query)
     cursor = db.cursor()
     cursor.execute(query)
     records = cursor.fetchall()
-    rowcount = cursor.rowcount
-    res = {"exsits": False}
     db.close()
 
-    if rowcount > 0:
-        res["exsits"] = True
-        res["id"] = records[0][0]
-    return res
+    return records
 
 
-def alter_last_checked(id):
-    db = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="sxbsadmin",
-        database="scalex"
-    )
-    query = "UPDATE plan SET last_checked='{}' WHERE id={}".format(
-        datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), id)
-    cursor = db.cursor()
-    print("UPDATE QUERY: {}".format(query))
-    cursor.execute(query)
-    db.commit()
-    db.close()
+def send_report_email(records: list):
+    records = get_old_records(2)
+    if len(records) > 0:
+        send_not_found_plan_email(records)
 
 
-def manage_omantel_packages():
-    omantelHeyyakPlus = OmantelHeyyakPlus()
-
-    for index, package in enumerate(omantelHeyyakPlus.packages):
-
-        try:
-            # Check of the package is already in the database
-            res = package.is_in_database()
-            print(res)
-            if not res["exsits"]:
-                add_package(
-                    package.price["value"],
-                    package.price["unit"],
-                    package.data_allowance["value"],
-                    package.data_allowance["unit"],
-                    float(package.flexi_minutes),
-                    0,
-                    0,
-                    package.duration["value"],
-                    package.duration["unit"],
-                    package.isp,
-                    omantelHeyyakPlus.HEYYAK_PLUS_URL,
-                    0,
-                    package.social_media_data["unit"],
-                    datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-                )
-            else:
-                alter_last_checked(res["id"])
-        except Exception as e:
-            # print("Someting went wrong! {}".format(index))
-            print("ERROR: {}".format(str(e)))
-
-        print(str(index))
-        print(package)
-        print("------------------------------")
-
-
-manage_omantel_packages()
-
-# def manage_omantel_packages():
-#     omantelHeyyakPlus = OmantelHeyyakPlus()
-#     for index, package in enumerate(omantelHeyyakPlus.packages):
-#         try:
-#             # Check of the package is already in the database
-#             res = is_package_in_db(
-#                 package["price"]["value"],
-#                 package["price"]["unit"],
-#                 package["data_allowance"]["value"],
-#                 package["data_allowance"]["unit"],
-#                 float(package["flexi_minutes"]),
-#                 0,
-#                 0,
-#                 package["duration"]["value"],
-#                 package["duration"]["unit"],
-#                 "omantel",
-#                 omantelHeyyakPlus.HEYYAK_PLUS_URL,
-#                 0,
-#                 "GB"
-#             )
-#             print(res)
-#             if not res["exsits"]:
-#                 add_package(
-#                     package["price"]["value"],
-#                     package["price"]["unit"],
-#                     package["data_allowance"]["value"],
-#                     package["data_allowance"]["unit"],
-#                     float(package["flexi_minutes"]),
-#                     0,
-#                     0,
-#                     package["duration"]["value"],
-#                     package["duration"]["unit"],
-#                     "omantel",
-#                     omantelHeyyakPlus.HEYYAK_PLUS_URL,
-#                     0,
-#                     "GB",
-#                     datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-#                 )
-#             else:
-#                 alter_last_checked(res["id"])
-#         except Exception as e:
-#             # print("Someting went wrong! {}".format(index))
-#             print("ERROR: {}".format(str(e)))
-
-#         print(str(index))
-#         print(package)
-#         print("------------------------------")
+start_scalex_engine(*plans_classes)
+old_records = get_old_records(5)
+send_report_email(old_records)

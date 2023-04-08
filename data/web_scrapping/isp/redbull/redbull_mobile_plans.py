@@ -1,5 +1,6 @@
 from data.web_scrapping.isp.redbull.redbull_toolkit import RedbullToolkit
 from domain.package import Package
+from domain.constants.common_data import common_data
 
 
 class RedbullMobilePlans(RedbullToolkit):
@@ -14,17 +15,15 @@ class RedbullMobilePlans(RedbullToolkit):
         package_blocks = self.soup.select("div.home__card-inner")
 
         for block in package_blocks:
-            data = {
-                "price": "",
-                "data_allowance": "",
-                "flexi_minutes": "",
-                "local_minutes": 0,
-                "international_minutes": 0,
-                "social_media_data": {"value": 0, "unit": "GB"},
-                "duration": "",
+            data = common_data
+            data.update({
+                "service_type": "MOBILE",
+                "plan_type": "PREPAID",
+                "title": "Redbull Mobile",
                 "link": self.MOBILE_PLANS_URL,
-                "isp": "omantel",
-            }
+                "isp": "redbull",
+
+            })
             price = block.select_one(
                 "div.home__card-title").text
             duration = block.select_one("div.home__card-date").text
@@ -34,7 +33,7 @@ class RedbullMobilePlans(RedbullToolkit):
             data["data_allowance"] = self.split_value_and_unit(
                 included_data)
             data["flexi_minutes"] = self.split_value_and_unit(
-                all_net_minutes)
+                all_net_minutes)['value']
             # data["all_net_minutes"] = self.split_value_and_unit(
             #     all_net_minutes)
             data["duration"] = self.split_value_and_unit(duration)

@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from domain.scalex_toolkit import ScaleXToolkit
+from domain.scalex_toolkit import ScaleXToolkit, get_unit
 
 
 class AwaserToolkit(ScaleXToolkit):
@@ -9,15 +9,9 @@ class AwaserToolkit(ScaleXToolkit):
     def get_download_speed(self, scope_html):
         download_speed_value = scope_html.select_one("span.currency")
         dwonload_speed_unit = scope_html.select_one("span.mo")
-        return {"value": download_speed_value.text, "unit": dwonload_speed_unit.text}
-
-    def get_title(self, scope_html):
-        try:
-            title_img_tag = scope_html.select_one(
-                "img.service-plan-title-image")
-            return {"value": "https://awasr.om"+title_img_tag["src"], "format": "IMG_URL"}
-        except:
-            print("Couldn't get title image")
+        download_speed = {"value": float(
+            download_speed_value.text), "unit": get_unit(dwonload_speed_unit.text)}
+        return self.unify_unit(download_speed)
 
     def get_price(self, scope_html):
         price = scope_html.select_one("p.price")
@@ -29,7 +23,8 @@ class AwaserToolkit(ScaleXToolkit):
             "div.service-plan-content.text-direction")
         li = promotions.find_all("li")
         for l in li:
-            other.append(self.clear_string(l.text))
+            if "Get Increased" not in l.text:
+                other.append(self.clear_string(l.text))
         return other
 
     def get_soup(self, URL):
