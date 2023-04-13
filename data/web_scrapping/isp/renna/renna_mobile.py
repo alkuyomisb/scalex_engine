@@ -1,6 +1,6 @@
 from data.web_scrapping.isp.renna.renna_toolkit import RennaToolkit
-from domain.constants.common_data import common_data
-from domain.package import Package
+from utils.constants.common_data import common_data
+from utils.package import Package
 
 
 class RennaMobile(RennaToolkit):

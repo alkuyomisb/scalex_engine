@@ -1,5 +1,5 @@
 import mysql.connector
-from domain.scalex_toolkit import unlimited_as_unit, format_minutes
+from utils.scalex_toolkit import unlimited_as_unit, format_minutes
 import datetime
 
 

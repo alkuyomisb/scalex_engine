@@ -1,4 +1,4 @@
-from domain.constants.common_data import common_data
+from utils.constants.common_data import common_data
 from email.message import EmailMessage
 import smtplib
 import ssl
@@ -318,19 +318,19 @@ class ScaleXToolkit:
     #         best_package = package2
     #     return best_package
 
-    def export_packages(self):
-        with open('exports/packages.csv', 'w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow(["Provider",	"Plan Name",	"Plan Type",	"Plan Validity (Days)",	"Total Plan Price",	"Included Data (GB)",	"Promotional Data (GB)",	"Social Media Data (GB)",	"Weekend Data (GB)",
-                            "Night Data (GB)",	"Roaming Data (GB)",	"All-Net Minutes",	"On-Net Minutes",	"Weekend Minutes",	"International Minutes",	"All-Net SMS",	"On-Net SMS",	"Notes",	"Plan Web Address"])
+    # def export_packages(self):
+    #     with open('exports/packages.csv', 'w', newline='') as file:
+    #         writer = csv.writer(file)
+    #         writer.writerow(["Provider",	"Plan Name",	"Plan Type",	"Plan Validity (Days)",	"Total Plan Price",	"Included Data (GB)",	"Promotional Data (GB)",	"Social Media Data (GB)",	"Weekend Data (GB)",
+    #                         "Night Data (GB)",	"Roaming Data (GB)",	"All-Net Minutes",	"On-Net Minutes",	"Weekend Minutes",	"International Minutes",	"All-Net SMS",	"On-Net SMS",	"Notes",	"Plan Web Address"])
 
-        for idx, package in enumerate(heyyak_plus.packages):
-            writer.writerow(["Omantel",
-                            "New Heyyak",
-                             "Prepaid",
-                             self.merge_value_and_unit(package["duration"]),
-                             self.merge_value_and_unit(package["price"]),
-                             self.merge_value_and_unit(package["data_allowance"]),	"NA",	stk.merge_value_and_unit(package["social_media_data"]),	0,	0,	0,		"Prom data",	0,	0,	0,	0,	0,	"NA",		heyyak_plus.HEYYAK_PLUS_URL])
+    #     for idx, package in enumerate(heyyak_plus.packages):
+    #         writer.writerow(["Omantel",
+    #                         "New Heyyak",
+    #                          "Prepaid",
+    #                          self.merge_value_and_unit(package["duration"]),
+    #                          self.merge_value_and_unit(package["price"]),
+    #                          self.merge_value_and_unit(package["data_allowance"]),	"NA",	stk.merge_value_and_unit(package["social_media_data"]),	0,	0,	0,		"Prom data",	0,	0,	0,	0,	0,	"NA",		heyyak_plus.HEYYAK_PLUS_URL])
 
 
 def get_soup(URL):
@@ -386,7 +386,7 @@ def get_unit(str):
 def send_not_found_plan_email(records):
     print("Sending report email..")
 
-    plans_str = ""
+    not_found_plans_str = ""
     for index, plan in enumerate(records):
         plans_str += str(index+1) + \
             "- [ID: " + plan[0] + "] [TITLE: "+plan[1]+"]" "\n"
@@ -398,7 +398,8 @@ def send_not_found_plan_email(records):
     password = os.environ.get("STMP_PASS")
 
     subject = "Plans Not Found"
-    body = "These plans not found on their pages:\n{}".format(plans_str)
+    body = "These plans not found on their pages:\n{}".format(
+        not_found_plans_str)
 
     em = EmailMessage()
     em["From"] = sender_email

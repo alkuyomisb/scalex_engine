@@ -1,7 +1,7 @@
 from data.web_scrapping.isp.friendly.friendly_toolkit import FriendlyToolkit
-from domain.constants.common_data import common_data
-from domain.package import Package
-from domain.scalex_toolkit import get_soup
+from utils.constants.common_data import common_data
+from utils.package import Package
+from utils.scalex_toolkit import get_soup
 
 
 class FriendlyMobile(FriendlyToolkit):

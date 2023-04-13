@@ -1,6 +1,6 @@
 from data.web_scrapping.isp.omantel.omantel_tookit import OmantelToolkit
-from domain.constants.common_data import common_data
-from domain.package import Package
+from utils.constants.common_data import common_data
+from utils.package import Package
 
 
 class OmantelAfaaq(OmantelToolkit):

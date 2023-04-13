@@ -1,6 +1,6 @@
 from data.web_scrapping.isp.ooredoo.ooredoo_tookit import OoredooToolkit
-from domain.package import Package
-from domain.constants.common_data import common_data
+from utils.package import Package
+from utils.constants.common_data import common_data
 
 
 class OoredooHalaSIM(OoredooToolkit):

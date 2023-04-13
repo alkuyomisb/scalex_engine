@@ -1,7 +1,7 @@
 
 from data.web_scrapping.isp.omantel.omantel_tookit import OmantelToolkit
-from domain.package import Package
-from domain.constants.common_data import common_data
+from utils.package import Package
+from utils.constants.common_data import common_data
 
 
 class OmantelTouristPacks(OmantelToolkit):

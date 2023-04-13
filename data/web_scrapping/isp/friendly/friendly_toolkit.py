@@ -1,4 +1,4 @@
-from domain.scalex_toolkit import ScaleXToolkit
+from utils.scalex_toolkit import ScaleXToolkit
 
 
 class FriendlyToolkit(ScaleXToolkit):

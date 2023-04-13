@@ -1,5 +1,5 @@
 
-from domain.scalex_toolkit import ScaleXToolkit, send_not_found_plan_email
+from utils.scalex_toolkit import send_not_found_plan_email
 import mysql.connector
 
 from data.web_scrapping.isp.awaser.fiber_home import FiberHome
@@ -79,12 +79,7 @@ def start_scalex_engine(*plans_classes):
         time.sleep(1)
 
 
-# obj = RennaMobile()
-# for plan in obj.packages:
-#     print(plan.data_allowance)
-
-
-def get_old_records(minutes: int):
+def get_not_found_plans(minutes: int):
     db = mysql.connector.connect(
         host="localhost",
         user="root",
@@ -105,12 +100,11 @@ def get_old_records(minutes: int):
     return records
 
 
-def send_report_email(records: list):
-    records = get_old_records(2)
+def send_report_if_needed(records: list):
     if len(records) > 0:
         send_not_found_plan_email(records)
 
 
 start_scalex_engine(*plans_classes)
-old_records = get_old_records(5)
-send_report_email(old_records)
+not_found_plans = get_not_found_plans(5)
+send_report_if_needed(not_found_plans)

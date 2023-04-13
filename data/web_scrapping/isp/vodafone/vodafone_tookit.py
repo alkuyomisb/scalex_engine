@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from domain.scalex_toolkit import ScaleXToolkit
+from utils.scalex_toolkit import ScaleXToolkit
 
 
 class VodafoneToolkit(ScaleXToolkit):
