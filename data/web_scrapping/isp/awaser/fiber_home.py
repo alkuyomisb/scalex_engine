@@ -18,7 +18,7 @@ class FiberHome(AwaserToolkit):
             data = common_data.copy()
             data.update({
                 "service_type": "FIXED",
-                "plan_type": "POSTPAID",
+                "plan_type": "PREPAID",
                 "title": "Fiber Home",
                 "link": self.FIBER_HOME_URL,
                 "isp": "awasr",
