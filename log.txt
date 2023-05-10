@@ -1,4 +1,4 @@
-run_scalex_engine called: Wed May 10 13:30:00 +04 2023
+run_scalex_engine called: Wed May 10 14:25:00 +04 2023
 Page [1:8] -> Plan [1:8]
 Checking if 'Hayyak Plus' with the same data exists in database...
 'Hayyak Plus' exists in database
