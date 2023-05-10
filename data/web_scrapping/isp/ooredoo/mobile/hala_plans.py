@@ -15,7 +15,7 @@ class OoredooHalaPlans(OoredooToolkit):
         blocks = self.soup.select(
             "div.plans__item")
         for block in blocks:
-            data = common_data
+            data = common_data.copy()
             data.update({
                 "service_type": "MOBILE",
                 "plan_type": "PREPAID",

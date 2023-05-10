@@ -15,7 +15,7 @@ class OmantelWireless(OmantelToolkit):
         blocks = self.soup.select(
             "div._box._background-white.extra.violet")
         for block in blocks:
-            data = common_data
+            data = common_data.copy()
             data.update({
                 "service_type": "FIXED",
                 "plan_type": "POSTPAID",

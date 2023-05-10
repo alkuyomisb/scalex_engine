@@ -16,7 +16,7 @@ class VodafonePlans(VodafoneToolkit):
         blocks = self.soup.select("div.plan__wrapper")
 
         for block in blocks:
-            data = common_data
+            data = common_data.copy()
             data.update({
                 "service_type": "MOBILE",
                 "plan_type": "PREPAID",

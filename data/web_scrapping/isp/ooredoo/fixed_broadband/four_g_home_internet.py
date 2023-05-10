@@ -15,7 +15,7 @@ class Ooredoo4GHomeInternet(OoredooToolkit):
         blocks = self.soup.select(
             "div.product-item")
         for block in blocks:
-            data = common_data
+            data = common_data.copy()
             data.update({
                 "service_type": "FIXED",
                 "plan_type": "POSTPAID",

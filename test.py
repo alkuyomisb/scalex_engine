@@ -32,91 +32,54 @@ import time
 import warnings
 warnings.filterwarnings("ignore")
 
-plans_classes = [
-    # OmantelHeyyakPlus,
-    # FiberHome,
-    # OmantelJawazkGCC,
-    # OoredooSatelliteHomeInternet,
-    # OmantelAfaaq,
-    # RennaMobile,
-    # OmantelHeyyakDataOnly,
-    # RedbullMobilePlans,
-    # OmantelJawazkWorld,
-    # Ooredoo4GHomeInternet,
-    # OmantelBasic,
-    # Ooredoo5GHomeInternet,
-    # OmantelUltraFast,
-    # OoredooFiberHomeInternet,
-    # OmantelWireless,
-    # OoredooHalaPlans,
-    # OmantelAmanPlan,
-    # OoredooTouristPlans,
-    # OmantelAmanPostpaid,
-    # OoredooShahryEndless,
-    # OmantelBaqatiAlufuq,
-    # OoredooShahryDataOnly,
-    # OmantelNewBaqati,
-    # OoredooOmanuna,
-    # OmantelEradaBaqati,
-    # OoredooHalaSIM,
-    # OmantelTouristPacks,
-    FriendlyMobile,
-    VodafonePlans
-]
+
+obj = RedbullMobilePlans()
+for p in obj.packages:
+    print(p.title)
+    p.handle_db()
+
+# plans_classes = [
+#     # OmantelHeyyakPlus,
+#     # FiberHome,
+#     # OmantelJawazkGCC,
+#     # OoredooSatelliteHomeInternet,
+#     # OmantelAfaaq,
+#     # RennaMobile,
+#     # OmantelHeyyakDataOnly,
+#     # RedbullMobilePlans,
+#     # OmantelJawazkWorld,
+#     # Ooredoo4GHomeInternet,
+#     # OmantelBasic,
+#     # Ooredoo5GHomeInternet,
+#     # OmantelUltraFast,
+#     # OoredooFiberHomeInternet,
+#     # OmantelWireless,
+#     # OoredooHalaPlans,
+#     # OmantelAmanPlan,
+#     # OoredooTouristPlans,
+#     # OmantelAmanPostpaid,
+#     # OoredooShahryEndless,
+#     # OmantelBaqatiAlufuq,
+#     # OoredooShahryDataOnly,
+#     # OmantelNewBaqati,
+#     # OoredooOmanuna,
+#     # OmantelEradaBaqati,
+#     # OoredooHalaSIM,
+#     # OmantelTouristPacks,
+#     FriendlyMobile,
+#     VodafonePlans
+# ]
 
 
-def start_scalex_engine(*plans_classes):
-    for page_index, PlanClass in enumerate(plans_classes):
-        obj = PlanClass()
-        for plan_index, package in enumerate(obj.packages):
-            print("Page [{}:{}] -> Plan [{}:{}]".format(page_index+1,
-                  len(plans_classes), plan_index+1, len(obj.packages)))
-            package.handle_db()
-        time.sleep(1)
+# def start_scalex_engine(*plans_classes):
+#     for page_index, PlanClass in enumerate(plans_classes):
+#         obj = PlanClass()
+#         for plan_index, package in enumerate(obj.packages):
+#             print("Page [{}:{}] -> Plan [{}:{}]".format(page_index+1,
+#                   len(plans_classes), plan_index+1, len(obj.packages)))
+#             package.handle_db()
+#         time.sleep(1)
 
 
-# h = OmantelHeyyakPlus()
-start_scalex_engine(*plans_classes)
-
-
-# def check():
-#     print("=>Checking Omantel Plans<=")
-#     print("[1/13]")
-#     obj = OmantelAfaaq()
-#     print("[2/13]")
-#     time.sleep(2)
-#     obj = OmantelBasic()
-#     print("[3/13]")
-#     time.sleep(2)
-#     obj = OmantelUltraFast()
-#     print("[4/13]")
-#     time.sleep(2)
-#     obj = OmantelWireless()
-#     print("[5/13]")
-#     time.sleep(2)
-#     obj = OmantelAmanPlan()
-#     print("[6/13]")
-#     time.sleep(2)
-#     obj = OmantelAmanPostpaid()
-#     print("[7/13]")
-#     time.sleep(2)
-#     obj = OmantelBaqatiAlufuq()
-#     print("[8/13]")
-#     time.sleep(2)
-#     obj = OmantelNewBaqati()
-#     print("[9/13]")
-#     time.sleep(2)
-#     obj = OmantelEradaBaqati()
-#     print("[10/13]")
-#     time.sleep(2)
-#     obj = OmantelHeyyakDataOnly()
-#     print("[11/13]")
-#     time.sleep(2)
-#     obj = OmantelHeyyakPlus()
-#     print("[12/13]")
-#     time.sleep(2)
-#     obj = OmantelJawazkWorld()
-#     print("[13/13]")
-#     time.sleep(2)
-#     obj = OmantelTouristPacks()
-#     print("=>Checking Ended successfully<=")
+# # h = OmantelHeyyakPlus()
+# start_scalex_engine(*plans_classes)

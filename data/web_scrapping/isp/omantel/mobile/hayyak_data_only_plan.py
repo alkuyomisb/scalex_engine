@@ -18,7 +18,7 @@ class OmantelHeyyakDataOnly(OmantelToolkit):
         package_divs = self.soup.select(
             "div._box._background-white.Black")
         for package_div in package_divs:
-            data = common_data
+            data = common_data.copy()
             data.update({
                 "service_type": "MOBILE",
                 "plan_type": "POSTPAID",

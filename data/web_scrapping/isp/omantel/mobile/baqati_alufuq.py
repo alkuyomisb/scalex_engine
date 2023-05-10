@@ -12,7 +12,7 @@ class OmantelBaqatiAlufuq(OmantelToolkit):
         self.get_packages()
 
     def get_packages(self):
-        data = common_data
+        data = common_data.copy()
         data.update({
             "service_type": "MOBILE",
             "plan_type": "POSTPAID",

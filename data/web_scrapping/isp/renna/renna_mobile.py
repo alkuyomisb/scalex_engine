@@ -19,7 +19,7 @@ class RennaMobile(RennaToolkit):
             if "hidden" in block.parent.parent.parent.parent["class"]:
                 continue
 
-            data = common_data
+            data = common_data.copy()
             data.update({
                 "service_type": "MOBILE",
                 "plan_type": "PREPAID",

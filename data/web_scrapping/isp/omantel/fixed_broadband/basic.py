@@ -15,7 +15,7 @@ class OmantelBasic(OmantelToolkit):
         package_divs = self.soup.select(
             "div._box._background-white")
         for package_div in package_divs:
-            data = common_data
+            data = common_data.copy()
             data.update({
                 "service_type": "FIXED",
                 "plan_type": "POSTPAID",

@@ -15,7 +15,7 @@ class RedbullMobilePlans(RedbullToolkit):
         package_blocks = self.soup.select("div.home__card-inner")
 
         for block in package_blocks:
-            data = common_data
+            data = common_data.copy()
             data.update({
                 "service_type": "MOBILE",
                 "plan_type": "PREPAID",

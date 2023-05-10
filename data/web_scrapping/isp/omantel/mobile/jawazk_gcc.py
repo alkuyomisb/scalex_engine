@@ -15,7 +15,7 @@ class OmantelJawazkGCC(OmantelToolkit):
         blocks = self.soup.select(
             "div._box._background-white")
         for block in blocks:
-            data = common_data
+            data = common_data.copy()
             data.update({
                 "service_type": "MOBILE",
                 "plan_type": "PREPAID",

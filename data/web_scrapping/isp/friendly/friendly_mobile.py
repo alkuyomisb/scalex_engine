@@ -18,7 +18,7 @@ class FriendlyMobile(FriendlyToolkit):
             if any(w in block.text for w in ["PRICE"]):
                 continue
 
-            data = common_data
+            data = common_data.copy()
             data.update({
                 "service_type": "MOBILE",
                 "plan_type": "PREPAID",
