@@ -388,14 +388,15 @@ def send_not_found_plan_email(records):
 
     not_found_plans_str = ""
     for index, plan in enumerate(records):
-        plans_str += str(index+1) + \
-            "- [ID: " + plan[0] + "] [TITLE: "+plan[1]+"]" "\n"
+        not_found_plans_str += str(index+1) + \
+            "- [ID: " + str(plan[0]) + "] [TITLE: "+plan[1]+"]" "\n"
 
     port = 465  # For starttls
     smtp_server = "smtp.gmail.com"
-    sender_email = "ahmed.alkuyomi@swiftbeam.co"
-    receiver_email = "ahmedalkuyomi@gmail.com"
-    password = os.environ.get("STMP_PASS")
+    sender_email = "scalexengine@swiftbeam.co"
+    receiver_email = "ahmed.alkuyomi@swiftbeam.co"
+    # password = os.environ.get("STMP_PASS")Lastpa$$2020
+    password = "Lastpa$$2020"
 
     subject = "Plans Not Found"
     body = "These plans not found on their pages:\n{}".format(

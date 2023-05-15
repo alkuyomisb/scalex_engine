@@ -1,4 +1,4 @@
-run_scalex_engine called: Wed May 10 14:50:00 +04 2023
+run_scalex_engine called: Sun May 14 13:10:00 +04 2023
 Page [1:29] -> Plan [1:8]
 Checking if 'Hayyak Plus' with the same data exists in database...
 'Hayyak Plus' exists in database
@@ -842,12 +842,4 @@ Saving '
 									Vodafone RED Advance ' to database...
 ----------------------------------------------------------------
 Sending report email..
-Traceback (most recent call last):
-  File "/Users/swiftbeam/Documents/GitHub/scalex_engine/main.py", line 110, in <module>
-    send_report_if_needed(not_found_plans)
-  File "/Users/swiftbeam/Documents/GitHub/scalex_engine/main.py", line 105, in send_report_if_needed
-    send_not_found_plan_email(records)
-  File "/Users/swiftbeam/Documents/GitHub/scalex_engine/utils/scalex_toolkit.py", line 391, in send_not_found_plan_email
-    plans_str += str(index+1) + \
-UnboundLocalError: local variable 'plans_str' referenced before assignment
 complete
