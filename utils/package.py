@@ -1,5 +1,5 @@
 import mysql.connector
-from utils.scalex_toolkit import unlimited_as_unit, format_minutes
+from utils.scalex_toolkit import unlimited_as_unit, format_minutes, get_total_local_minutes, extract_number
 import datetime
 
 
@@ -10,6 +10,8 @@ class Package:
         self.world_roaming = unlimited_as_unit(data["world_roaming"])
         self.flexi_minutes = format_minutes(data["flexi_minutes"])
         self.local_minutes = format_minutes(data["local_minutes"])
+        self.total_local_minutes = format_minutes(get_total_local_minutes(format_minutes(
+            data["local_minutes"]), format_minutes(data["flexi_minutes"])))
         self.international_minutes = format_minutes(
             data["international_minutes"])
         self.duration = unlimited_as_unit(data["duration"])
@@ -30,6 +32,7 @@ class Package:
     def is_in_database(self) -> dict:
         print(
             "Checking if '{}' with the same data exists in database...".format(self.title))
+
         db = mysql.connector.connect(
             host="localhost",
             user="root",
@@ -65,7 +68,8 @@ class Package:
         world_roaming_unit='{}' AND
         contract_duration_value='{}' AND
         contract_duration_unit='{}' AND
-        add_on_link='{}' ;
+        add_on_link='{}' AND 
+        total_local_minutes='{}';
                         """.format(
             round(self.price["value"], 3),
             self.price["unit"],
@@ -94,7 +98,9 @@ class Package:
             self.contract_duration["value"],
             self.contract_duration["unit"],
             self.add_ons_link,
+            self.total_local_minutes
         )
+
         # print("CHECK QUERY: {}".format(query))
 
         cursor = db.cursor()
@@ -150,7 +156,9 @@ class Package:
         contract_duration_value,
         contract_duration_unit,
         add_on_link,
-        last_checked,status)
+        last_checked,
+        total_local_minutes,
+        status)
         VALUES (
             {},
            '{}',
@@ -177,6 +185,7 @@ class Package:
              {} ,
              '{}' ,
              {} ,
+             '{}' ,
              '{}' ,
              '{}' ,
              '{}', 'ACTIVE');
@@ -209,6 +218,8 @@ class Package:
             self.contract_duration["unit"],
             self.add_ons_link,
             datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            self.total_local_minutes,
+
         )
         cursor = db.cursor()
         cursor.execute(query)

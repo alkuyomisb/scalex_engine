@@ -383,6 +383,38 @@ def get_unit(str):
     return ""
 
 
+def get_total_local_minutes(local_minutes, flexi_minutes):
+    lm = extract_number(local_minutes, data_type="float")
+    fm = extract_number(flexi_minutes, data_type="float")
+
+    if local_minutes == "UNLIMITED" or flexi_minutes == "UNLIMITED":
+        return "UNLIMITED"
+    else:
+        return float(lm) + float(fm)
+
+
+def extract_number(string, data_type="int"):
+    if string == None or string == '' or len(string) < 0:
+        if data_type == "int":
+            return 0
+        else:
+            return 0.0
+
+    number = "".join([i for i in string if i.isdigit() or i == '.'])
+    if data_type == "int":
+        if len(number) > 0:
+            return int(number)
+        else:
+            return 0
+    elif data_type == "float":
+        if len(number) > 0:
+            return float(number)
+        else:
+            return 0.0
+    else:
+        return number
+
+
 def send_not_found_plan_email(records):
     print("Sending report email..")
 

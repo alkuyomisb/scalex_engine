@@ -24,7 +24,7 @@ class OmantelHeyyakPlus(OmantelToolkit):
                 "link": self.HEYYAK_PLUS_URL,
                 "isp": "omantel",
                 "add-ons": [
-                    " https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus/Add-ons/erada"
+                    "https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus/Add-ons/erada"
                 ]
             })
 
@@ -49,8 +49,8 @@ class OmantelHeyyakPlus(OmantelToolkit):
             data["data_allowance"] = self.get_omantel_block_value(
                 block, "Data Allowance", split=True)
 
-            data["social_media_data"] = self.get_omantel_block_value(
-                block, "Social Media Data", split=True)
+            # data["social_media_data"] = self.get_omantel_block_value(
+            #     block, "Social Media Data", split=True)
 
             data["flexi_minutes"] = self.get_omantel_block_value(
                 block, "Flexi Minutes") if self.get_omantel_block_value(
