@@ -143,13 +143,16 @@ class ScaleXToolkit:
         words = string.split()
         for index, word in enumerate(words):
             if any(w in word.lower() for w in ["gb", "mb"]):
-                value = float(words[index-1])
-                if "mb" in word.lower():
-                    value = value/1000
-                    word = "GB"
+                try:
+                    value = float(words[index-1])
+                    if "mb" in word.lower():
+                        value = value/1000
+                        word = "GB"
 
-                data_allowance["value"] = value
-                data_allowance["unit"] = word
+                    data_allowance["value"] = value
+                    data_allowance["unit"] = word
+                except:
+                    return data_allowance
                 break
         return data_allowance
 
