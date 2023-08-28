@@ -100,6 +100,29 @@ def get_not_found_plans(minutes: int):
     return records
 
 
+def change_status_not_found_plans(not_found_plans):
+    db = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="sxbsadmin",
+        database="scalex"
+    )
+
+    cursor = db.cursor()
+
+    for plan_id, _ in not_found_plans:
+        # Update the status to "INACTIVE" for each plan in not_found_plans
+        update_query = """
+            UPDATE `plan`
+            SET status = "INACTIVE"
+            WHERE id = %s;
+        """
+        cursor.execute(update_query, (plan_id,))
+        db.commit()  # Commit the changes to the database
+
+    db.close()
+
+
 def send_report_if_needed(records: list):
     if len(records) > 0:
         send_not_found_plan_email(records)
@@ -107,4 +130,7 @@ def send_report_if_needed(records: list):
 
 start_scalex_engine(*plans_classes)
 not_found_plans = get_not_found_plans(5)
-send_report_if_needed(not_found_plans)
+print("-----NOT PLANS FOUND-----")
+print(str(not_found_plans))
+# send_report_if_needed(not_found_plans)
+change_status_not_found_plans(not_found_plans)
